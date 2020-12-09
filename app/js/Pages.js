@@ -208,20 +208,21 @@ window.customElements.define( 'mod-submit', class extends HTMLElement{
         this.composer.on( 'ready', ( c ) => {
 
             c.toBlob( blob => {
-                console.log( blob )
+        //         console.log( blob )
 
-                fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
+        //         fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
+                fetch('http://localhost:5000/uploadppb',{ 
                     method: 'post', 
-                    body: blob,
-                    headers: { 'Content-Type': 'application/octet-stream' }
+                    body: JSON.stringify( { data:'asdf'}),
+                    headers: { 'Content-Type': 'application/json' }
                 } )
-                .then( response => { if( response.status == 200 ) console.log( response ) } )
-                .then( myJson => { console.log( 'there' ) } )
+        //         .then( response => { if( response.status == 200 ) console.log( response ) } )
+        //         .then( myJson => { console.log( 'there' ) } )
 
             }, 'image/png')
 
             
-            console.log('wut')
+        //     console.log('wut')
         })
 
         
