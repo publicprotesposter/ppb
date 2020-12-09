@@ -194,6 +194,18 @@ window.customElements.define( 'mod-icon', class extends HTMLElement{
 // mod-submit
 // ----------------------------------------------------------------
 
+function b64toBlob(dataURI) {
+
+    var byteString = atob(dataURI.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: 'image/jpeg' });
+}
+
 window.customElements.define( 'mod-submit', class extends HTMLElement{
     connectedCallback () {
         this.querySelector( '.otherBut' ).addEventListener( 'click', () => {
@@ -206,23 +218,40 @@ window.customElements.define( 'mod-submit', class extends HTMLElement{
         this.composer = new Composer( data )
         // submit here
         this.composer.on( 'ready', ( c ) => {
+            var url = c.toDataURL()
+            console.log( url )
+            fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
+                method: 'post', 
+                body: JSON.stringify( { data : c.toDataURL() } ),
+                headers: { 'Content-Type': 'application/json'}
+            } )
+            .then( response => { 
+                if( response.status == 200 ) console.log('ok') 
+                else console.log( response )
+            } )
+            .then( myJson => { console.log( 'there' ) } )
 
-            c.toBlob( blob => {
-                console.log( blob )
+        } )
 
-                fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
-                    method: 'post', 
-                    body: blob,
-                    headers: { 'Content-Type': 'application/octet-stream' }
-                } )
-                .then( response => { if( response.status == 200 ) console.log( response ) } )
-                .then( myJson => { console.log( 'there' ) } )
+                // console.log( res.blob() )
+                // fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
+                //     method: 'post', 
+                //     body: JSON.stringify( { data : res.blob() } ),
+                //     headers: { 'Content-Type': 'application/json'}
+                // } )
 
-            }, 'image/png')
-
+                
+                // .then( response => { 
+                //     if( response.status == 200 ) console.log('ok') 
+                //     else console.log( response )
+                // } )
+                // .then( myJson => { console.log( 'there' ) } )
+                
+            // })
             
-            console.log('wut')
-        })
+            
+            
+        // })
 
         
     }
