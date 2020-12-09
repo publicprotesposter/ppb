@@ -194,6 +194,18 @@ window.customElements.define( 'mod-icon', class extends HTMLElement{
 // mod-submit
 // ----------------------------------------------------------------
 
+function b64toBlob(dataURI) {
+
+    var byteString = atob(dataURI.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: 'image/jpeg' });
+}
+
 window.customElements.define( 'mod-submit', class extends HTMLElement{
     connectedCallback () {
         this.querySelector( '.otherBut' ).addEventListener( 'click', () => {
@@ -206,24 +218,19 @@ window.customElements.define( 'mod-submit', class extends HTMLElement{
         this.composer = new Composer( data )
         // submit here
         this.composer.on( 'ready', ( c ) => {
-
-            c.toBlob( blob => {
-        //         console.log( blob )
-
+           
+            
         //         fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
                 fetch('http://localhost:5000/uploadppb',{ 
                     method: 'post', 
-                    body: JSON.stringify( { data:'asdf'}),
+                    body: JSON.stringify( { data : c.toDataURL() } ),
                     headers: { 'Content-Type': 'application/json' }
                 } )
         //         .then( response => { if( response.status == 200 ) console.log( response ) } )
         //         .then( myJson => { console.log( 'there' ) } )
 
-            }, 'image/png')
+         } )
 
-            
-        //     console.log('wut')
-        })
 
         
     }
