@@ -17,6 +17,7 @@
     "stylus": "^0.54.8"
   },
   "dependencies": {
+    "jimp": "^0.16.1",
     "unique-names-generator": "^4.3.1"
   }
 }
