@@ -1,0 +1,112 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='Content-Type',content='text/html; charset=utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Project title
+    link(rel='stylesheet', id='mainStylesheet' href='../css/main.styl')
+  body
+    #composer
+    a#menuBut( href = 'javascript:void( 0 )') -
+    mod-menu.page
+      .title public protest billboard
+      .inner
+        a.nav( href = 'javascript:void(0)' data-target = 'mod-menu-news' ) News #[br]
+        a.nav( href = 'javascript:void(0)' data-target = 'mod-menu-gallery' ) Galería #[br]
+        a.nav( href = 'javascript:void(0)' data-target = 'mod-menu-credits' ) Créditos
+    mod-menu-news.page
+      .title News
+      .inner
+        p Queremos avisarte de las proyecciones que llevemos a cabo.
+        p #[a( href = 'mailto:info@publicposterproject.org' ) Mándanos] un correo para que te avisemos.
+    mod-menu-gallery.page
+      .title Galería (contenido creado)
+      .inner
+        p.tiny Coming soon
+    mod-menu-credits.page
+      .title Créditos
+      .inner
+        p.tiny Powered by www.elisava.net
+        p.tiny Idea y diseño #[br] @public_protest_poster #[br] @___santi___
+    mod-home.page.active
+      .title public protest billboard
+      .inner
+        p La plataforma participativa que da voz a las personas a través de una instalación interactiva
+        p #[a.nav( href = 'javascript:void(0)' data-target = 'mod-intro' ) Ok ]
+    mod-intro.page
+      .title public protest billboard
+      .inner
+        p #[a.nav( href = 'javascript:void(0)' data-target = 'mod-write' ) Escribe tu mensaje] protesta con humor y respeto
+        p #[a.nav( href = 'javascript:void(0)' data-target = 'mod-live' ) Modo Live! ]
+    mod-write.page.light-scheme
+      .title 1. Redacción
+      .inner
+        textarea( maxlength = '40' placeholder = 'Escribe aquí máximo 5 palabras')
+        button Ok
+    mod-image.page
+      .title 2. Imagen
+      .inner
+        p ¿Quieres añadir una image a tu mensaje?
+        p #[a.nav( href = 'javascript:void(0)'  data-target = 'mod-image-type' ) Sí ] #[br] #[a.nav( href = 'javascript:void(0)' data-target = 'mod-submit' ) No ]
+    mod-image-type.page
+      .title 2. Imagen
+      .inner
+        p Selecciona una #[a.nav( href = 'javascript:void(0)' data-target = 'mod-photo' ) fotografía] o un #[a.nav( href = 'javascript:void(0)' data-target = 'mod-icon' ) icono ] para acompañar a tu mensaje
+    mod-photo.page
+      .title 2. Imagen
+      .inner
+        input( type = 'file' accept = 'image/*' )
+        a.imgSelect( href = 'javascript:void(0)' ) Seleccionar #[br]
+        #imageViewer
+          .preview
+          a.okBut( href = 'javascript:void(0)' ) OK #[br]
+        a.cancelBut( href = 'javascript:void(0)' ) Cancelar
+    mod-photo-preview.page
+      .title 2. Imagen
+      .inner
+        span ¿Añadir?
+        br 
+        a.siBut( href = 'javascript:void(0)' ) Sí
+        br 
+        a.noBut( href = 'javascript:void(0)' ) No
+        canvas
+    mod-icon.page
+      .title 2. Imagen
+      .inner
+        span Seleccionar
+        br 
+        a.okBut( href = 'javascript:void(0)' ) Ok
+        br 
+        a.nav( href = 'javascript:void(0)' data-target = 'mod-submit' ) Cancelar
+        br 
+        br 
+    mod-submit.page
+      .title public protest billboard
+      .inner
+        p Gracias por participar. Tu mensaje pronto se emitirá en ppb
+        p ¿Quieres #[a.nav( href = 'javascript:void(0)' data-target = 'mod-preview' ) verlo]?
+        P.otherBut ¿Quieres hacer #[a( href = 'javascript:void(0)' ) otro]?
+    mod-news.page
+      .title News
+      .inner
+        p Queremos avisarte de las proyecciones que llevemos a cabo.
+        p #[a( href = 'javascript:void(0)' ) Mándanos] un correo para que te avisemos.
+    mod-gallery.page
+      .title Galería (contenido creado)
+      .inner
+        p Queremos avisarte de las proyecciones que llevemos a cabo.
+        p #[a( href = 'javascript:void(0)' ) Mándanos] un correo para que te avisemos.
+    mod-preview.page
+      .title Tú póster
+      .inner
+        p #[a.okBut( href='javascript:void(0)') OK]
+    mod-live.page
+      .title Live!!
+      .inner
+        p.tiny Wonders of wonders
+        
+        
+
+    script(src='../js/main.js')
