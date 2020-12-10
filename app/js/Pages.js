@@ -216,23 +216,14 @@ window.customElements.define( 'mod-submit', class extends HTMLElement{
 
     onEnterPage( data ){
         this.composer = new Composer( data )
-        // submit here
         this.composer.on( 'ready', ( c ) => {
-           
-            
-        //         fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
-                fetch('http://localhost:5000/uploadppb',{ 
-                    method: 'post', 
-                    body: JSON.stringify( { data : c.toDataURL() } ),
-                    headers: { 'Content-Type': 'application/json' }
-                } )
-        //         .then( response => { if( response.status == 200 ) console.log( response ) } )
-        //         .then( myJson => { console.log( 'there' ) } )
-
-         } )
-
-
-        
+            fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
+            // fetch('http://localhost:5000/uploadppb',{ 
+                method: 'post', 
+                body: JSON.stringify( { data : c.toDataURL() } ),
+                headers: { 'Content-Type': 'application/json' }
+            } )
+        } )
     }
 } )
 

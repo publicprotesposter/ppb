@@ -6,7 +6,7 @@ class Main{
         Object.values( document.querySelectorAll( '.page' ) ).forEach( p => p.addEventListener( 'navigate', ( e ) => this.navigate( e.detail.page ) ) )
         Object.values( document.querySelectorAll( '.page' ) ).forEach( p => p.addEventListener( 'setData', ( e ) => this.setData( e.detail ) ) )
         Object.values( document.querySelectorAll( 'a.nav' ) ).forEach( a => a.addEventListener( 'click', ( e ) => this.navigate( e.target.dataset.target ) ) )
-        this.navigate( 'mod-photo' )
+        // this.navigate( 'mod-photo' )
         
         document.querySelector( '#menuBut' ).addEventListener( 'click', () => {
             if( this.currentPage == 'mod-menu' ) this.navigate( this.prevPage )
