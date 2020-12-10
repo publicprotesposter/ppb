@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel app/views/index.pug",
+    "server": "node server.js",
     "build": "rm -rf docs && parcel build app/views/index.pug --no-source-maps --out-dir docs --public-url '.'"
   },
   "keywords": [],

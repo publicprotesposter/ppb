@@ -64,7 +64,7 @@ const readPoster = ( queueId ) => {
 
 const runCurrentPoster = () => {
     if( queue[ currentPoster ] == null || queue[ currentPoster ].data == null ) return
-    // console.clear()
+    console.clear()
     
     // set buffer
     const stride = 3 // r + g + b
