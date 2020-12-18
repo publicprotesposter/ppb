@@ -130,7 +130,7 @@ function send( socket, message ) {
 }
 
 setInterval( () => fetchPosters(), 60000 )
-setInterval( () => runCurrentPoster(), 100 )
+setInterval( () => runCurrentPoster(), 1000 )
 
 raf(function tick() {
     if( fadeControl ) intensity += ( 1 - intensity ) * 0.1
