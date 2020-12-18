@@ -78,14 +78,14 @@ const readPoster = ( ) => {
                 queue[ select ].height = res.bitmap.height
                 // console.log( "poster loaded" + select )
                 if( isInitialLoad ) {
-                    setInterval( () => {
-                        fadeControl = false
-                    }, 9500 )
+                    // setInterval( () => {
+                    //     fadeControl = false
+                    // }, 9500 )
                     setInterval( () => {
                         if( currentPoster < queue.length - 1 ) currentPoster++
                         else currentPoster = 0
                         offset = 0
-                        fadeControl = true
+                        // fadeControl = true
                     }, 10000 )
                     isInitialLoad = false
                 }
