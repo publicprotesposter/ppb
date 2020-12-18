@@ -117,7 +117,7 @@ const runCurrentPoster = () => {
         console.log( l )
     }
 
-    // send( socket, image ) // ---> Error: send EMSGSIZE 255.255.255.255:6000
+    send( socket, image ) // ---> Error: send EMSGSIZE 255.255.255.255:6000
     
     offset++
 }
