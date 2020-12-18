@@ -125,7 +125,7 @@ const runCurrentPoster = () => {
 function send( socket, message ) {
     socket.send( message, udp_server_port, 'localhost', err => {
         if( err ) return console.log( err )
-        send(socket, message) 
+        // send(socket, message) 
     })
 }
 
