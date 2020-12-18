@@ -128,6 +128,10 @@ window.customElements.define( 'mod-menu-gallery', class extends HTMLElement{
             
             cnv.width = im.width
             cnv.height = im.height
+            var ar = im.height / im.width
+            cnv.style.width = this.querySelector( '.inner' ).offsetWidth + 'px'
+            cnv.style.height = this.querySelector( '.inner' ).offsetWidth * ar + 'px'
+            console.log( this.querySelector( '.inner' ) )
             var ct = cnv.getContext( '2d' )
             ct.drawImage( im, 0, 0 )
             this.querySelector( '.inner' ).appendChild( cnv )

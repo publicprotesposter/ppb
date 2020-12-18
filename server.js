@@ -80,13 +80,13 @@ const readPoster = ( ) => {
                 if( isInitialLoad ) {
                     setInterval( () => {
                         fadeControl = false
-                    }, 4500 )
+                    }, 9500 )
                     setInterval( () => {
                         if( currentPoster < queue.length - 1 ) currentPoster++
                         else currentPoster = 0
                         offset = 0
                         fadeControl = true
-                    }, 5000 )
+                    }, 10000 )
                     isInitialLoad = false
                 }
             })
@@ -125,7 +125,6 @@ const runCurrentPoster = () => {
 function send( socket, message ) {
     socket.send( message, udp_server_port, 'localhost', err => {
         if( err ) return console.log( err )
-        // send(socket, message) 
     })
 }
 
