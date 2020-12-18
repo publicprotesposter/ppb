@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel app/views/index.pug",
+    "server": "node server.js",
     "build": "rm -rf docs && parcel build app/views/index.pug --no-source-maps --out-dir docs --public-url '.'"
   },
   "keywords": [],
@@ -17,6 +18,10 @@
     "stylus": "^0.54.8"
   },
   "dependencies": {
-    "unique-names-generator": "^4.3.1"
+    "dgram": "^1.0.1",
+    "jimp": "^0.16.1",
+    "raf": "^3.4.1",
+    "unique-names-generator": "^4.3.1",
+    "ws": "^7.4.1"
   }
 }

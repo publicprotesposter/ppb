@@ -110,6 +110,60 @@ window.customElements.define( 'mod-photo', class extends HTMLElement{
     }
 } )
 
+
+// ----------------------------------------------------------------
+// mod-menu-gallery
+// ----------------------------------------------------------------
+
+window.customElements.define( 'mod-menu-gallery', class extends HTMLElement{
+    connectedCallback () {
+    
+    }
+
+    makeImage( b64 ){
+        console.log( b64 )
+        var im = new Image()
+        var cnv = document.createElement( 'canvas' )
+        im.onload = () => { 
+            
+            cnv.width = im.width
+            cnv.height = im.height
+            var ct = cnv.getContext( '2d' )
+            ct.drawImage( im, 0, 0 )
+            this.querySelector( '.inner' ).appendChild( cnv )
+            // this.cnvData.push( ct.getImageData( 0, 0, cnv.width, cnv.height ).data )
+
+        }
+        im.src = 'data:image/png;base64,' + b64
+    }
+
+    updateCanvas(){
+        // console.log( this.cnvData )
+    }
+
+    loadPosters( id ){
+        fetch( 'https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/getppbposter/' + id )
+            .then( response => response.text( ) )
+            .then( data => this.makeImage( data ) )
+    }
+
+    onEnterPage( data ){
+        fetch( 'https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/getppb' )
+            .then( response => response.json( ) )
+            .then( data => data.forEach( p => {
+                this.loadPosters( p.id ) 
+                this.scrollInterval = setInterval( () => this.updateCanvas(), 120 )
+                this.cnvData = []
+            } ) )
+    
+        
+    }
+    
+    onLeavePage(){
+        clearInterval( this.scrollInterval )
+    }
+})
+
 // ----------------------------------------------------------------
 // mod-photo-preview
 // ----------------------------------------------------------------
@@ -128,7 +182,7 @@ window.customElements.define( 'mod-photo-preview', class extends HTMLElement{
     drawImage( b64img ){
         var img = new Image()
         img.onload = () => {
-            console.log( img.width )
+
             var c = document.createElement( 'canvas' )
             c.width = img.width
             c.height = img.height
@@ -148,7 +202,7 @@ window.customElements.define( 'mod-photo-preview', class extends HTMLElement{
                 ctx.arc( rl / 2 + py * rl, rl / 2 + px * rl, r, 0, 2 * Math.PI )
                 ctx.fill()
             }
-            console.log('here')
+
         }
         img.src = b64img
     }
@@ -184,7 +238,6 @@ window.customElements.define( 'mod-icon', class extends HTMLElement{
 
     confirmSelect(){
         var selectedIcon = this.querySelector( '.selected' )
-        console.log( selectedIcon.dataset.url  )
         this.dispatchEvent(  new CustomEvent( 'setData', {  'detail' : { img : selectedIcon.dataset.url } } ) )
         this.dispatchEvent(  new CustomEvent( 'navigate', {  'detail' : { page : 'mod-submit' } } ) ) 
     }
@@ -193,18 +246,6 @@ window.customElements.define( 'mod-icon', class extends HTMLElement{
 // ----------------------------------------------------------------
 // mod-submit
 // ----------------------------------------------------------------
-
-function b64toBlob(dataURI) {
-
-    var byteString = atob(dataURI.split(',')[1]);
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: 'image/jpeg' });
-}
 
 window.customElements.define( 'mod-submit', class extends HTMLElement{
     connectedCallback () {
@@ -218,7 +259,6 @@ window.customElements.define( 'mod-submit', class extends HTMLElement{
         this.composer = new Composer( data )
         this.composer.on( 'ready', ( c ) => {
             fetch('https://cors-anywhere.herokuapp.com/https://susurros.herokuapp.com/uploadppb',{ 
-            // fetch('http://localhost:5000/uploadppb',{ 
                 method: 'post', 
                 body: JSON.stringify( { data : c.toDataURL() } ),
                 headers: { 'Content-Type': 'application/json' }
@@ -242,7 +282,6 @@ window.customElements.define( 'mod-preview', class extends HTMLElement{
         this.width = 48
         this.height = 18
         this.canvas = document.createElement( 'canvas' )
-        console.log( this.querySelector( '.inner' ).offsetWidth )
         this.canvas.width = window.innerWidth - 40
         this.canvas.height = this.canvas.width * ( this.height / this.width )
         this.ctx = this.canvas.getContext( '2d' )
@@ -281,7 +320,6 @@ window.customElements.define( 'mod-preview', class extends HTMLElement{
     }
     
     onLeavePage(){
-        
         clearInterval( this.scrollInterval )
     }
 } )
