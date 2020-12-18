@@ -20,24 +20,24 @@ class Composer extends EventEmitter{
         
         var testBox, type
 
-        if( this.data.text.split( ' ' ).length < 3 ) {
+        // if( this.data.text.split( ' ' ).length < 3 ) {
             testBox = document.createElement( 'span' )
             testBox.style['font-family'] = this.font
             testBox.innerHTML = this.data.text.toUpperCase()
             testBox.style.fontSize = '14px'
             type = 'large'
-        } else {
-            this.node.style.width = '48px'
-            testBox = document.createElement( 'div' )
-            testBox.innerHTML = this.data.text.toUpperCase()
-            testBox.style['font-family'] = this.font
-            testBox.style.fontSize = '7px'
-            this.node.appendChild( testBox )
-            while( testBox.offsetHeight > 18 ) testBox.style.width = testBox.offsetWidth + 1 + 'px'
-            while( testBox.offsetHeight < 18 ) testBox.style.width = testBox.offsetWidth - 1 + 'px'
-            testBox.style.width = testBox.offsetWidth + 1 + 'px'
-            type = 'small'
-        }
+        // } else {
+        //     this.node.style.width = '48px'
+        //     testBox = document.createElement( 'div' )
+        //     testBox.innerHTML = this.data.text.toUpperCase()
+        //     testBox.style['font-family'] = this.font
+        //     testBox.style.fontSize = '7px'
+        //     this.node.appendChild( testBox )
+        //     while( testBox.offsetHeight > 18 ) testBox.style.width = testBox.offsetWidth + 1 + 'px'
+        //     while( testBox.offsetHeight < 18 ) testBox.style.width = testBox.offsetWidth - 1 + 'px'
+        //     testBox.style.width = testBox.offsetWidth + 1 + 'px'
+        //     type = 'small'
+        // }
 
         this.node.appendChild( testBox )
         
