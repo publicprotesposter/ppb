@@ -79,7 +79,7 @@ const readPoster = ( ) => {
                 // console.log( "poster loaded" + select )
                 if( isInitialLoad ) {
                     setInterval( () => {
-                        // fadeControl = false
+                        fadeControl = false
                     }, 4500 )
                     setInterval( () => {
                         if( currentPoster < queue.length - 1 ) currentPoster++
@@ -107,7 +107,7 @@ const runCurrentPoster = () => {
     for( var i = 0 ; i < height ; i++ ){
         var l = ''
         for( var j = 0 ; j < width ; j++ ){
-            var pxlVal = poster.data[ ( ( j + offset ) % poster.width ) + poster.width * i ]
+            var pxlVal = poster.data[ ( ( j + offset ) % poster.width ) + poster.width * i ] * intensity
             l += symbols[ Math.floor( ( pxlVal / 255 ) * ( symbols.length - 1 ) ) ]
             image[ pointer * stride + 0 ] = pxlVal
             image[ pointer * stride + 1 ] = pxlVal
@@ -130,13 +130,13 @@ function send( socket, message ) {
 }
 
 setInterval( () => fetchPosters(), 60000 )
-setInterval( () => runCurrentPoster(), 1000 )
+setInterval( () => runCurrentPoster(), 100 )
 
-// raf(function tick() {
-//     if( fadeControl ) intensity += ( 1 - intensity ) * 0.1
-//     else intensity -= intensity * 0.1
-//     raf(tick)
-//   })
+raf(function tick() {
+    if( fadeControl ) intensity += ( 1 - intensity ) * 0.1
+    else intensity -= intensity * 0.1
+    raf(tick)
+  })
 
 
 fetchPosters()
