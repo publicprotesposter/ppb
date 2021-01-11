@@ -5,7 +5,7 @@ class Main{
         this.data = { text : 'A quick brown fox', img : null }
         Object.values( document.querySelectorAll( '.page' ) ).forEach( p => p.addEventListener( 'navigate', ( e ) => this.navigate( e.detail.page ) ) )
         Object.values( document.querySelectorAll( '.page' ) ).forEach( p => p.addEventListener( 'setData', ( e ) => this.setData( e.detail ) ) )
-        Object.values( document.querySelectorAll( 'a.nav' ) ).forEach( a => a.addEventListener( 'click', ( e ) => this.navigate( e.target.dataset.target ) ) )
+        Object.values( document.querySelectorAll( 'a.nav' ) ).forEach( a => a.addEventListener( 'click', ( e ) => { if( e.target.dataset.target ) this.navigate( e.target.dataset.target ) } ) )
         // this.navigate( 'mod-photo' )
         
         document.querySelector( '#menuBut' ).addEventListener( 'click', () => {

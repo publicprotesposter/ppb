@@ -9,7 +9,7 @@ window.customElements.define( 'mod-write', class extends HTMLElement{
     connectedCallback () {
         this.textarea = this.querySelector( 'textarea' )
         this.textarea.addEventListener( 'keyup', ( e ) => {
-            if ( e.target.value.match(/\S+/g).length > 5 ) e.target.value = e.target.value.split(/\s+/, 5).join( ' ' ) + ' '
+            if ( e.target.value.match(/\S+/g).length > 3 ) e.target.value = e.target.value.split(/\s+/, 3).join( ' ' ) + ' '
         } )
         this.querySelector( 'button' ).addEventListener( 'click', () => this.storeText() )
     }
@@ -222,7 +222,7 @@ window.customElements.define( 'mod-photo-preview', class extends HTMLElement{
 
 window.customElements.define( 'mod-icon', class extends HTMLElement{
     connectedCallback () {
-        this.querySelector( '.okBut' ).addEventListener( 'click', () => this.confirmSelect() )
+        // this.querySelector( '.okBut' ).addEventListener( 'click', () => this.confirmSelect() )
         
         
         Object.values( icons ).forEach( i => {
@@ -238,6 +238,7 @@ window.customElements.define( 'mod-icon', class extends HTMLElement{
     selectIcon( e ){
         Object.values( this.querySelectorAll( '.iconHolder' ) ).forEach( i => i.classList.remove( 'selected' ) )
         e.target.classList.add( 'selected' )
+        this.confirmSelect()
     }
 
     confirmSelect(){
